@@ -10,13 +10,16 @@ function App() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <>
+        {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/dashboard" element={<ChatHistory />} />
+          {import.meta.env.VITE_TEMPO === "true" && (
+            <Route path="/tempobook/*" />
+          )}
         </Routes>
-        {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
       </>
     </Suspense>
   );
